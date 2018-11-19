@@ -1,0 +1,22 @@
+{
+  "name": "rails-react-jest-webpack",
+  "version": "1.0.0",
+  "description": "lolol",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TDA/Rails-React-Jest-Webpack.git"
+  },
+  "author": "Sai Pc",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/TDA/Rails-React-Jest-Webpack/issues"
+  },
+  "homepage": "https://github.com/TDA/Rails-React-Jest-Webpack#readme"
+}
