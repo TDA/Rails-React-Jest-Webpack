@@ -18,5 +18,9 @@
   "bugs": {
     "url": "https://github.com/TDA/Rails-React-Jest-Webpack/issues"
   },
-  "homepage": "https://github.com/TDA/Rails-React-Jest-Webpack#readme"
+  "homepage": "https://github.com/TDA/Rails-React-Jest-Webpack#readme",
+  "dependencies": {
+    "react": "16.6.3",
+    "webpack": "4.26.1"
+  }
 }
