@@ -1,4 +1,4 @@
-== README
+# README
 This Readme documents the steps I had to follow to get webpacker working with the following config:
 * npm
 * rails
@@ -36,4 +36,18 @@ $ bin/rails webpacker:install:react
 "webpack": "3.12.0",
 "webpack-dev-server": "2.11.2"
 ```
-7. Profit.
+7. Profit. The output of your `rails server` should show something like this when you hit the React endpoint:
+```
+
+Started GET "/assets/application.self-e80e8f2318043e8af94dddc2adad5a4f09739a8ebb323b3ab31cd71d45fd9113.css?body=1" for 127.0.0.1 at 2018-11-25 21:47:53 -0800
+
+Started GET "/" for 127.0.0.1 at 2018-11-25 21:48:09 -0800
+Processing by HomeController#index as HTML
+[Webpacker] Compiling…
+[Webpacker] Compiled all packs in /Users/schandramouli/RubymineProjects/Rails-React-Jest-Webpack/public/packs
+  Rendered home/index.html.erb within layouts/application (2340.8ms)
+Completed 200 OK in 2347ms (Views: 2346.7ms | ActiveRecord: 0.0ms)
+
+Started GET "/assets/home.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 127.0.0.1 at 2018-11-25 21:48:11 -0800
+```
+8. If webpacker is missing from that, you did something wrong.
