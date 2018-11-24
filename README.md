@@ -26,7 +26,7 @@ $ bin/rails webpacker:install:react
 ```
 
 5. Now when you run stuff in `rails server`, you should see a `Webpacker can't find hello_react.js in manifest.json` error.
-6. To fix this, RTFM. Install the following (as it says it in the logs!!):
+6. To fix this, [RTFM](https://github.com/rails/webpacker/blob/master/docs/troubleshooting.md#cant-find-hello_reactjs-in-manifestjson). Install the following (as it literally says it in the logs!!):
 ```
 "@rails/webpacker": "~3.5.5",
 "babel-preset-react": "6.24.1",
