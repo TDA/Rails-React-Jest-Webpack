@@ -1,11 +1,12 @@
 # README
 This Readme documents the steps I had to follow to get webpacker working with the following config:
-* npm
-* rails
-* react
-* webpack
-* jest
-* sprockets co-existence
+* NPM (no Yarn)
+* Rails
+* React
+* Webpack for compiling assets the JS way
+* Jest and Enzyme for React testing
+* Sprockets for compoiling assets the Rails way
+* Co-existence of Sprockets and Webpack
 
 
 ## Setting up assets with webpacker
@@ -18,7 +19,7 @@ gem 'webpacker'
 $ bundle install
 ```
 
-3. Follow this guide to get it working with NPM instead of Yarn: https://itnext.io/how-to-use-webpacker-with-npm-instead-of-yarn-a8a764e3a8ab
+3. Follow this guide to get Webpacker working with NPM instead of Yarn: https://itnext.io/how-to-use-webpacker-with-npm-instead-of-yarn-a8a764e3a8ab
 
 4. With the gem installed we need to run the task to setup React and Webpack with Rails. To do that, you need to have ~~Yarn~~ NPM installed from the above step.
 ```
@@ -76,3 +77,66 @@ Started GET "/assets/home.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca
 ```
 6. Add this to development.rb: `config.react.variant = :development`
 7. Add this to production.rb: `config.react.variant = :production`
+
+
+## Setting up Jest
+Note: Jest can only be setup with webpack version of React components: https://github.com/reactjs/react-rails/issues/226
+```
+Testing React with jest has one major prerequisite, that you structure your components as CommonJS modules. So there's (i think) no real way of using jest if you're using the "naive" way of structuring your components in the rails asset pipeline.
+```
+
+Most of this is better explained here: https://hackernoon.com/testing-react-components-with-jest-and-enzyme-41d592c174f
+I have updated this Readme with other additions that are useful.
+
+1. Install Jest and Friends:
+```
+npm i jest babel-jest react-test-renderer babel-preset-env babel-preset-react enzyme enzyme-adapter-react-16 -D
+```
+2. Setup the config for Jest in `package.json`.
+
+    2.1. `moduleDirectories` is set to anything you Jest to search for modules used in your source.
+
+    2.2. `roots` is the test root folder.
+
+    2.3. `setupFiles` is for all the code that runs before your tests start.
+
+    2.4. `snapshotSerializers` gives you the enzyme to json adapter, that automatically serializes and de-serializes your snapshots.
+```
+/* Append to your package.json */
+"scripts": {
+  "test": "jest",
+  "test:watch": "jest --watch",
+  "test:coverage": "jest --coverage"
+},
+"jest": {
+  "setupFiles": ["./test/jestSetup.js"],
+  "snapshotSerializers": ["enzyme-to-json/serializer"],
+  "roots": [
+    "spec/javascript"
+  ],
+  "moduleDirectories": [
+    "node_modules",
+    "app/javascript"
+  ]
+}
+```
+Note: Jest will look for files to run and will match the files with *spec.js or *test.js, so it is important to set the root for Jest otherwise it will try to run test.js on config/webpack as a test.
+
+3. Setup the setup file for Jest (lol):
+```
+import Enzyme, { shallow, render, mount } from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
+import React from 'react';
+import ReactDOM from 'react-dom';
+
+// React 16 Enzyme adapter
+Enzyme.configure({ adapter: new Adapter() });
+// Make Enzyme functions available in all test files without importing
+global.shallow = shallow;
+global.render = render;
+global.mount = mount;
+
+// So you dont need to manually set React up in every test file. Also helps with ESLint.
+global.React = React;
+global.ReactDOM = ReactDOM;
+```
