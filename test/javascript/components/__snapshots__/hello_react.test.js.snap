@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`render a Hello component 1`] = `
+<div>
+  Hello I am from Webpacker! 
+  saisai
+  !
+</div>
+`;

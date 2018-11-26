@@ -1,7 +1,8 @@
 import Hello from 'hello_react';
+
 test('render a Hello component', () => {
     const wrapper = shallow(
-        <Hello name={saisai}/>
+        <Hello name='saisai'/>
     );
     expect(wrapper).toMatchSnapshot();
 });
