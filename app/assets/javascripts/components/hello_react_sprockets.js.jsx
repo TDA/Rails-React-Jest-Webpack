@@ -4,6 +4,6 @@ class HelloSprockets extends React.Component {
     }
 
     render() {
-        return (<div>Hello {props.name}!</div>)
+        return (<div>Hello I am from Sprockets. {this.props.name}!</div>)
     }
 }

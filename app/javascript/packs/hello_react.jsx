@@ -7,7 +7,7 @@ import ReactDOM from 'react-dom'
 import PropTypes from 'prop-types'
 
 const Hello = props => (
-  <div>Hello {props.name}!</div>
+  <div>Hello I am from Webpacker! {props.name}!</div>
 )
 
 Hello.defaultProps = {
