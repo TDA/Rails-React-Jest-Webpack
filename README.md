@@ -147,3 +147,8 @@ global.ReactDOM = ReactDOM;
 Ref:
 1. http://blog.plataformatec.com.br/2018/05/setting-up-rails-with-webpacker-react-and-jest/
 2. https://medium.com/@kylefox/how-to-setup-javascript-testing-in-rails-5-1-with-webpacker-and-jest-ef7130a4c08e
+3. https://itnext.io/how-to-use-webpacker-with-npm-instead-of-yarn-a8a764e3a8ab
+4. https://github.com/rails/webpacker/blob/master/docs/troubleshooting.md#cant-find-hello_reactjs-in-manifestjson
+5. https://github.com/reactjs/react-rails/issues/226
+6. https://hackernoon.com/testing-react-components-with-jest-and-enzyme-41d592c174f
+7. https://github.com/reactjs/react-rails#use-with-asset-pipeline
