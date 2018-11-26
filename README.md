@@ -8,6 +8,7 @@ This Readme documents the steps I had to follow to get webpacker working with th
 * sprockets co-existence
 
 
+## Setting up assets with webpacker
 1. Go to Gemfile and add the Webpacker gem.
 ```
 gem 'webpacker'
@@ -51,3 +52,27 @@ Completed 200 OK in 2347ms (Views: 2346.7ms | ActiveRecord: 0.0ms)
 Started GET "/assets/home.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 127.0.0.1 at 2018-11-25 21:48:11 -0800
 ```
 8. If webpacker is missing from that, you did something wrong.
+9. Create a random component `HelloReactFromWebpack`
+10. Add it in erb file like so:
+```
+<%= javascript_pack_tag 'hello_react' %>
+```
+
+
+## Setting up assets with Sprockets
+1. Add the following to gemfile: `gem 'react-rails'`.
+2. Create a components folder inside `app/assets`.
+3. Add this to `app/assets/application.js` :
+```
+//= require react
+//= require react_ujs
+//= require_tree ./components
+//= require_self
+```
+4. Create a random component `HelloReactFromSprockets`
+5. Add this to the erb file:
+```
+<%= react_component("HelloReactFromSprockets", {name: "Hello Pc"}) %>
+```
+6. Add this to development.rb: `config.react.variant = :development`
+7. Add this to production.rb: `config.react.variant = :production`
