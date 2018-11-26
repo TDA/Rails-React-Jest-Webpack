@@ -38,6 +38,7 @@ config.webpacker.check_yarn_integrity = true
   # Checks for improperly declared sprockets dependencies.
   # Raises helpful error messages.
   config.assets.raise_runtime_errors = true
+  config.react.variant = :development
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
