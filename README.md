@@ -90,13 +90,14 @@ I have updated this Readme with other additions that are useful.
 
 1. Install Jest and Friends:
 ```
-npm i jest babel-jest react-test-renderer babel-preset-env babel-preset-react enzyme enzyme-adapter-react-16 -D
+npm i jest babel-jest react-test-renderer babel-preset-env babel-preset-react enzyme enzyme-adapter-react-16 enzyme-to-json -D
 ```
 2. Setup the config for Jest in `package.json`.
 
-    2.1. `moduleDirectories` is set to anything you Jest to search for modules used in your source.
+    2.1. `moduleDirectories` is set to anything you Jest to search for modules used in your source. Set this up right so you
+    don't need super long paths like `../../../app/javascript/components/myComponent`, and instead use `import myComponent`
 
-    2.2. `roots` is the test root folder.
+    2.2. `roots` is the test root folder. This can be `test/` or `spec/` depending on your rails folder config.
 
     2.3. `setupFiles` is for all the code that runs before your tests start.
 
@@ -109,10 +110,10 @@ npm i jest babel-jest react-test-renderer babel-preset-env babel-preset-react en
   "test:coverage": "jest --coverage"
 },
 "jest": {
-  "setupFiles": ["./test/jestSetup.js"],
+  "setupFiles": ["./test/javascript/jestSetup.js"],
   "snapshotSerializers": ["enzyme-to-json/serializer"],
   "roots": [
-    "spec/javascript"
+    "test/javascript"
   ],
   "moduleDirectories": [
     "node_modules",
@@ -124,6 +125,7 @@ Note: Jest will look for files to run and will match the files with *spec.js or 
 
 3. Setup the setup file for Jest (lol):
 ```
+// in jestSetup.js
 import Enzyme, { shallow, render, mount } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import React from 'react';
@@ -140,3 +142,8 @@ global.mount = mount;
 global.React = React;
 global.ReactDOM = ReactDOM;
 ```
+
+
+Ref:
+1. http://blog.plataformatec.com.br/2018/05/setting-up-rails-with-webpacker-react-and-jest/
+2. https://medium.com/@kylefox/how-to-setup-javascript-testing-in-rails-5-1-with-webpacker-and-jest-ef7130a4c08e

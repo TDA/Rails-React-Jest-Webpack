@@ -7,7 +7,9 @@
     "test": "test"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage"
   },
   "repository": {
     "type": "git",
@@ -34,16 +36,23 @@
     "babel-preset-react": "6.24.1",
     "enzyme": "3.7.0",
     "enzyme-adapter-react-16": "1.7.0",
+    "enzyme-to-json": "3.3.4",
     "jest": "23.6.0",
     "react-test-renderer": "16.6.3"
   },
   "jest": {
+    "setupFiles": [
+      "./test/javascript/jestSetup.js"
+    ],
+    "snapshotSerializers": [
+      "enzyme-to-json/serializer"
+    ],
     "roots": [
-      "spec/javascript"
+      "test/javascript"
     ],
     "moduleDirectories": [
       "node_modules",
-      "app/javascript"
+      "app/javascript/packs"
     ]
   }
 }
